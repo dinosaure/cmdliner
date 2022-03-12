@@ -571,10 +571,8 @@ module Cmd : sig
 
     (** {1:info Environment variable information} *)
 
-    [@@@alert "-deprecated"]
-    type info = Term.env_info (* because of Arg. *)
+    type[@alert "-deprecated"] info = Term.env_info
     (** The type for environment variable information. *)
-    [@@@alert "+deprecated"]
 
     val info : ?deprecated:string -> ?docs:string -> ?doc:string -> var -> info
     (** [env_info ~docs ~doc var] describes an environment variable
@@ -797,13 +795,11 @@ module Arg : sig
   type 'a printer = Format.formatter -> 'a -> unit
   (** The type for converted argument printers. *)
 
-  [@@@alert "-deprecated"] (* Need to be able to mention them ! *)
-  type 'a conv = 'a parser * 'a printer
+  type[@alert "-deprecated"] 'a conv = 'a parser * 'a printer
   (** The type for argument converters.
 
       {b Warning.} Do not use directly, use {!val-conv} or {!val-conv'}.
       This type will become abstract in the next major version of cmdliner. *)
-  [@@@alert "+deprecated"] (* Need to be able to mention them ! *)
 
   val conv :
     ?docv:string -> (string -> ('a, [`Msg of string]) result) * 'a printer ->

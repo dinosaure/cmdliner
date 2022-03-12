@@ -5,14 +5,12 @@ maintainer: ["Daniel Bünzli <daniel.buenzl i@erratique.ch>"]
 authors: ["The cmdliner programmers"]
 homepage: "https://erratique.ch/software/cmdliner"
 doc: "https://erratique.ch/software/cmdliner/doc"
-dev-repo: "git+https://erratique.ch/repos/cmdliner.git"
+dev-repo: "git+https://github.com/dune-universe/cmdliner.git"
 bug-reports: "https://github.com/dbuenzli/cmdliner/issues"
 license: ["ISC"]
 tags: ["cli" "system" "declarative" "org:erratique"]
-depends: ["ocaml" {>= "4.03.0"}]
-build: [[ make "all" "PREFIX=%{prefix}%" ]]
-install: [[make "install" "LIBDIR=%{_:lib}%" "DOCDIR=%{_:doc}%"]
-         [make "install-doc" "LIBDIR=%{_:lib}%" "DOCDIR=%{_:doc}%"]]
+depends: [ "ocaml" {>= "4.08.0"} "dune" ]
+build: [ "dune" "build" "-p" name "-j" jobs "@install" ]
 description: """
 Cmdliner allows the declarative definition of command line interfaces
 for OCaml.
@@ -29,3 +27,6 @@ Cmdliner has no dependencies and is distributed under the ISC license.
 [2]: http://www.gnu.org/software/libc/manual/html_node/Argument-Syntax.html
 
 Home page: http://erratique.ch/software/cmdliner"""
+url {
+  src: "git://github.com/dinosaure/cmdliner.git#v1.1.0+dune"
+}
